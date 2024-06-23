@@ -15,18 +15,20 @@ USER node
 
 RUN npm install
 ENV YT2009_PORT=80 \
-    YT2009_ENV=dev \
-    YT2009_IP=127.0.0.1 \
+    YT2009_ENV=prod \
+    YT2009_IP=yt2009mobile.onrender.com \
+    YT2009_TOKENS="dyson2013" \
     YT2009_SSL=false \
     YT2009_SSLPORT=443 \
     YT2009_SSLPATH=/yt2009/cert.crt \
     YT2009_SSLKEY=/yt2009/cert.key \
-    YT2009_AUTO_MAINTAIN=false \
-    YT2009_MAINTAIN_MAX_SIZE=10 \
+    YT2009_AUTO_MAINTAIN=true \
+    YT2009_MAINTAIN_MAX_SIZE=4 \
     YT2009_MAINTAIN_MAX_CACHE_SIZE=15 \
 	YT2009_FALLBACK=false \
 	YT2009_DISABLEMASTER=false \
-    YT2009_RATELIMIT=false
+    YT2009_RATELIMIT=false \
+    YT2009_HOMEPAGETEXT="We are aware of the issues with video playback and are working on a fix."
     
 RUN ln -s /data/config.json back/config.json && \
     ln -s /data/comments.json back/cache_dir/comments.json && \
@@ -34,5 +36,5 @@ RUN ln -s /data/config.json back/config.json && \
     echo "{\"env\": \"dev\"}" > back/config.json && \
     node post_config_setup.js
 
-CMD ["node", "backend.js"]
+CMD ["node", "backend_wrap.js"]
 ENTRYPOINT ["sh", "docker-entrypoint.sh"]
