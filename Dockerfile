@@ -16,7 +16,7 @@ USER node
 RUN npm install
 ENV YT2009_PORT=80 \
     YT2009_ENV=prod \
-    YT2009_IP=yt2009mobile-w6ig.onrender.com \
+    YT2009_IP=yt2009-dyson.onrender.com \
     YT2009_TOKENS="dyson2013" \
     YT2009_SSL=false \
     YT2009_SSLPORT=443 \
